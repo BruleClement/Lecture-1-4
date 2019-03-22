@@ -1,0 +1,927 @@
+/* 
+ * File:   main.cpp
+ * Author: clementbrule
+ *
+ * Created on 16 mars 2019, 19:37
+ */
+#include <iostream>   
+#include <cmath> 
+#include <time.h>
+#include <cstdlib>
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+
+using namespace std;
+
+/*
+ * 
+
+ * 
+ */
+void oddeven(int number)
+{
+    if(number%2==0)
+    {
+        printf("the number is even");
+    }
+    else
+    {
+        printf("the number is odd");
+    }
+    
+}
+void sumproductdifferencedivision(double number1, double number2)
+{
+    double array[4];
+    for(int i=0;i<4;i++)
+    {
+        array[i]=0;
+    }
+    array[0]=number1+number2;
+    array[1]=number1-number2;
+    array[2]=number1*number2;
+    if(number2!=0)
+    {
+        array[3]=number1/number2;
+            for(int i=0;i<4;i++)
+            {
+                cout<<" | "<<array[i]<<" | ";
+            }
+            cout<<endl;
+    }
+    else
+    {
+        printf("It's impossible to do the division, sorry");
+        for(int i=0;i<4;i++)
+        {
+            cout<<" | "<<array[i]<<" | ";
+        }
+        cout<<endl;
+    }   
+}
+void exchangevalue(double number1,double number2)
+{
+    double a=0;
+    a=number1;
+    number1=number2;
+    number2=a;
+    cout<<"now the first number is "<<number2<<" and the second number is "<<number1<<endl;   
+}
+void biggestnumber(int numberofnumber)
+{
+    
+    double arrayofnumber[numberofnumber];
+    double c;
+    double biggest=0;
+    for(int i=0;i<numberofnumber;i++)
+    {
+        cout<<"entrer the "<<i<<" eme number"<<endl;
+        cin>>c;
+        arrayofnumber[i]=c;
+    }
+    biggest=arrayofnumber[0];
+    for(int i=1;i<numberofnumber;i++)
+    {
+     if(arrayofnumber[i]>biggest)
+     {
+      biggest=arrayofnumber[i];   
+     }
+     
+    }
+    cout<<"the biggest number is "<<biggest<<endl;
+    
+}
+void factorial(int number)
+{
+    int factoriel=1;
+    for(int i=1;i<=number;i++)
+    {
+        factoriel=factoriel*i;
+    }
+    cout<<"the factorial of "<<number<<" is "<<factoriel<<endl;
+}
+void fibonacciserie(int number)
+{
+    int firstnumberoftheserie=0;
+    int secondnumberoftheserie=1;
+    int nextnumber=0;
+    cout<<" | "<<firstnumberoftheserie<<" | "<<secondnumberoftheserie;
+    while(nextnumber<=number)
+    {   
+        cout<<" | ";
+        nextnumber=firstnumberoftheserie+secondnumberoftheserie;
+        firstnumberoftheserie=secondnumberoftheserie;
+        secondnumberoftheserie=nextnumber;
+        cout<<secondnumberoftheserie;
+    }
+    cout<<" | ";
+}
+
+void meanvariance(int numberofnumber)
+{
+    double arrayofnumber[numberofnumber];
+    double d;
+    double mea=0;
+    double var=0;
+    for(int i=0;i<numberofnumber;i++)
+    {
+        cout<<"entrer the "<<i<<" eme number"<<endl;
+        cin>>d;
+        arrayofnumber[i]=d;
+    }
+    for(int i=0;i<numberofnumber;i++)
+    {
+        mea=mea+arrayofnumber[i];
+    }
+    mea=mea/numberofnumber;
+    for(int j=0;j<numberofnumber;j++)
+    {
+        var=pow(arrayofnumber[j]-mea,2)+var;
+    }
+    var=var/(numberofnumber-1);   
+}
+
+void DecToBin(int dec)
+{
+    int n=0;
+    int changement;
+    int middle;
+    n=(int)(log(dec)/log(2));
+    n=n+1;
+    int arraybin[n];
+    for(int i=0;i<n;i++)
+    {
+    if(dec%2==0)
+    {
+        dec=(int)(dec/2);
+        arraybin[i]=0;
+    }
+    else
+    {
+        dec=(int)(dec/2);
+        arraybin[i]=1;
+    }
+    }
+    
+    middle=(int)(n/2);
+    for(int i=0;i<middle;i++)
+    {
+        changement=arraybin[i];
+        arraybin[i]=arraybin[n-1-i];
+        arraybin[n-1-i]=changement;
+    }
+    for(int i=0;i<n;i++)
+    {
+        cout<<arraybin[i];
+    }
+}
+
+void DecToHex(int dec)
+{
+    int n=0;
+    int hex;
+    string changement;
+    int middle;
+    n=(int)(log(dec)/log(16));
+    n=n+1;
+    int arrayhex[n];
+    string arrayfinal[n];
+    for(int i=0;i<n;i++)
+    {
+        int hex=dec%16;
+        dec=(int)(dec/16);
+        arrayhex[i]=hex;
+    }
+    string lettre[16];
+    lettre[0]="0";
+    lettre[1]="1";
+    lettre[2]="2";
+    lettre[3]="3";
+    lettre[4]="4";
+    lettre[5]="5";
+    lettre[6]="6";
+    lettre[7]="7";
+    lettre[8]="8";
+    lettre[9]="9";
+    lettre[10]="A";
+    lettre[11]="B";
+    lettre[12]="C";
+    lettre[13]="D";
+    lettre[14]="E";
+    lettre[15]="F";
+    
+
+    for(int i=0;i<n;i++)
+        {
+             arrayfinal[i]=lettre[arrayhex[i]]; 
+        }
+    middle=(int)(n/2);
+    for(int i=0;i<middle;i++)
+    {
+        changement=arrayfinal[i];
+        arrayfinal[i]=arrayfinal[n-1-i];
+        arrayfinal[n-1-i]=changement;
+    }
+    
+    for(int i=0;i<n;i++)
+        {
+             cout<<arrayfinal[i]; 
+        }
+    
+                
+    cout<<endl;
+    
+}
+
+void BinToDec(int bin)
+{
+ int size=0;   
+ size=log10((double)bin)+1;
+ int number=0;
+ int dec=0;
+ 
+ for(int i=0;i<size;i++)
+ {
+ number=bin%10;
+ bin=bin/10;
+ if(number==1)
+ {
+ dec=pow(2,i)+dec;
+ }
+ }
+ cout<<dec<<endl;
+ 
+}
+
+void HexToDec(string hex)
+{
+    string lettre="0123456789ABCDEF";
+    string arraylettre[16];
+    int dec=0;
+    for(int i=0;i<16;i++)
+    {
+        arraylettre[i]=lettre[i];
+    }
+    int size=hex.size();
+    string arrayhex[size];
+    for(int i=0;i<size;i++)
+    {
+        arrayhex[i]=hex[i];
+    }
+    for(int j=0;j<size;j++)
+    {
+    for(int i=0;i<16;i++)
+    {
+        if(arrayhex[j]==arraylettre[i])
+        {
+           dec=i*pow(16,size-1-j)+dec; 
+        }
+    }
+    }
+    cout<<dec<<endl;
+    
+}
+void HexToBin(string hex)
+{
+    string lettre="0123456789ABCDEF";
+    string arraylettre[16];
+    for(int i=0;i<16;i++)
+    {
+        arraylettre[i]=lettre[i];
+    }
+    int size=hex.size();
+    string arrayhex[size];
+    int arraybin[size];
+    for(int i=0;i<size;i++)
+    {
+        arrayhex[i]=hex[i];
+    }
+    for(int j=0;j<size;j++)
+    {
+    for(int i=0;i<16;i++)
+    {
+        if(arrayhex[j]==arraylettre[i])
+        {
+            arraybin[j]=i;
+        }
+    }
+    }
+    for(int i=0;i<size;i++)
+    {
+        DecToBin(arraybin[i]);
+    }
+
+    
+    
+}
+void BinToHex(int bin)
+{
+ int size=0;   
+ size=log10((double)bin)+1;
+ int arrayofbin[size];
+ for(int i=0;i<size;i++)
+ {
+     arrayofbin[i]=bin%10;
+     bin=bin/10;
+ }
+ int numberofhex=size/4;
+ int arrayofhex[numberofhex+1];
+ for(int i=0;i<numberofhex+1;i++)
+ {
+     arrayofhex[i]=0;
+ }
+ 
+ for(int j=0;j<numberofhex;j++)
+ {
+ for(int i=j*4;i<4+j*4;i++)
+ {
+     if(arrayofbin[i]==1)
+     {    
+     arrayofbin[i]=pow(2,i-j*4);
+     }
+     arrayofhex[j]=arrayofbin[i]+arrayofhex[j];
+ }
+ }
+ for(int i=numberofhex*4;i<size;i++)
+ {
+     if(arrayofbin[i]==1)
+     {
+     arrayofbin[i]=pow(2,i-numberofhex*4);
+     }
+     arrayofhex[numberofhex]=arrayofbin[i]+arrayofhex[numberofhex];
+ }
+    string lettre="0123456789ABCDEF";
+    string arraylettre[16];
+    int dec=0;
+    for(int i=0;i<16;i++)
+    {
+        arraylettre[i]=lettre[i];
+    }
+    for(int i=numberofhex;i>0-1;i--)
+    {
+        for(int j=0;j<16;j++)
+        {
+            if(arrayofhex[i]==j)
+            {
+                cout<<arraylettre[j];
+            }
+        }
+    }
+    
+
+    
+    
+}
+
+void primeornot(int number)
+{
+    int prime=0;
+    for(int i=2;i<number;i++)
+    {
+        if(number%i==0)
+        {
+            prime=1;
+        }
+    }
+    if(prime==1)
+    {
+        cout<<"the number is not prime"<<endl; 
+    }
+    else
+    {
+        cout<<"the number is prime"<<endl;
+    }
+}
+void solvingquadraticequation(double a,double b,double c)
+{
+    double delta=pow(b,2)-4*a*c;
+    double solution1=0;
+    double solution2=0;
+    if(delta==0)
+    {
+        solution1=(-b)/(2*a);
+        cout<<"the solution is "<<solution1<<endl;
+        
+    }
+    else if(delta>0)
+    {
+        solution1=((-b+sqrt(delta))/(2*a));
+        solution2=((-b-sqrt(delta))/(2*a));
+        cout<<"the solution are "<<solution1<<" and "<<solution2<<endl;
+    }
+    else
+    {
+        cout<<"no solution of the system"<<endl;
+    }
+}
+void areaofanytriangle(double a,double b,double c)
+{
+    double s=0.5*(a+b+c);
+    double Pdelta=sqrt(s*(s-a)*(s-b)*(s-c));
+    cout<<"the area is "<<Pdelta<<endl;
+}
+
+void greatestcommondivisor(int number1,int number2)
+{
+    int greatcom=1;
+    if(number1>number2)
+    {
+        for(int i=2;i<number2+1;i++)
+        {
+            if((number1%i==0)&&(number2%i==0))
+            {
+                greatcom=i;
+            }
+        }
+    }
+    else
+    {
+        for(int i=2;i<number1+1;i++)
+        {
+            if((number1%i==0)&&(number2%i==0))
+            {
+                greatcom=i;
+            }
+        }
+    }
+    cout<<"the greatest common divisor is "<<greatcom<<endl;
+    
+}
+void leastcommonmultiple(int number1,int number2)
+{
+    int leastcom=number1;
+    if(number1>number2)
+    {
+        for(int i=2;i<number2+1;i++)
+        {
+            if((number1%i==0)&&(number2%i==0))
+            {
+                if(leastcom>i)
+                {
+                leastcom=i;
+                }
+                
+            }
+        }
+    }
+    else
+    {
+        for(int i=2;i<number1+1;i++)
+        {
+            if((number1%i==0)&&(number2%i==0))
+            {
+                if(leastcom>i)
+                {
+                leastcom=i;
+                }
+            }
+        }
+    }
+    if(leastcom==number1)
+    {
+        leastcom=1;
+    }
+    cout<<"the least common multiple is "<<leastcom<<endl;  
+}
+
+void convertingcelsiustofahrenheit(double celsius)
+{
+    double fahrenheit=(9/5)*celsius+32;
+    cout<<celsius<<" is "<<fahrenheit<<" fahrenheit"<<endl;
+}
+void convertingfahrenheittocelsius(double fahrenheit)
+{
+    double celsius=(fahrenheit-32)/1.8;
+    cout<<fahrenheit<<" is "<<celsius<<" celsius"<<endl;
+}
+void convertingMillestoKilometres(double milles)
+{
+    double kilometres=milles/0.62137;
+    cout<<milles<<" is "<<kilometres<<" kilometres"<<endl;
+}
+void convertingKilometrestoMilles(double kilometres)
+{
+    double milles=kilometres*0.62137;
+    cout<<kilometres<<" is "<<milles<<" milles "<<endl;
+    
+}
+void convertingcentimeterstoinches(double centimeters)
+{
+    double inches=2.54*centimeters;
+    cout<<centimeters<<" is "<<inches<<" inches "<<endl;
+}
+void convertinginchestocentimeters(double inches)
+{
+    double centimeters=0.3937*inches;
+    cout<<inches<<" is "<<centimeters<<" centimeters "<<endl;
+}
+void convertingkelvintocelsius(double kelvin)
+{
+    double celsius=kelvin-273.15;
+    cout<<kelvin<<" is "<<celsius<<" celsius "<<endl;
+}
+void convertingcelsiustokelvin(double celsius)
+{
+    double kelvin=celsius+273.15;
+    cout<<celsius<<" is "<<kelvin<<" kelvin "<<endl;
+}
+
+void bubblesorting(double arrayofnumber[],int size)
+{
+    double changement=0;
+    for(int i=1;i<size;i++)
+    {
+        if(arrayofnumber[i]<arrayofnumber[i-1])
+        {
+            changement=arrayofnumber[i];
+            arrayofnumber[i]=arrayofnumber[i-1];
+            arrayofnumber[i-1]=changement;
+            
+        }
+    }
+    for(int i=1;i<size;i++)
+    {
+        if(arrayofnumber[i]<arrayofnumber[i-1])
+        {
+            bubblesorting(arrayofnumber,size);
+        }
+    }
+    for(int i=0;i<size;i++)
+    {
+      cout<<" | "<<arrayofnumber[i]<<" | ";
+    }
+    cout<<endl;    
+}
+void insertionsorting(double arrayofnumber[],int size)
+{
+    double changement=0;
+    int placesmaller;
+    for(int j=0;j<size;j++)
+    {
+        placesmaller=j;
+    for(int i=j+1;i<size;i++)
+    {
+        if(arrayofnumber[placesmaller]>arrayofnumber[i])
+        {
+            placesmaller=i;
+        }
+    }
+    changement=arrayofnumber[placesmaller];
+    arrayofnumber[placesmaller]=arrayofnumber[j];        
+    arrayofnumber[j]=changement;
+    }
+    for(int i=0;i<size;i++)
+    {
+        cout<<" | "<<arrayofnumber[i]<<" | ";
+    }
+    cout<<endl;
+    
+}
+
+void guessnumber(int a,int b)
+{
+    int final=0;
+    srand(time(NULL));
+    double realnumber=rand()%(b-a)+a;
+    double number;
+    cout<<"you have 10 chance for find the number"<<endl;
+    
+    for(int i=0;i<10;i++)
+    {
+    if(final==0)
+    {
+    cout<<"which is the number?"<<endl;
+    cin>>number;
+    if(number==realnumber)
+    {
+        cout<<"congratulation, you win!!!!!!"<<endl;
+        final=1;
+    }
+    else if(number>realnumber)
+    {
+        cout<<"the number is smaller"<<endl;
+    }
+    else
+    {
+        cout<<"the number is bigger"<<endl;
+    }
+    
+    }
+    }
+}
+void randomuniformaly(int size,int a,int b)
+{
+    double arrayrandom[size];
+    srand(time(NULL));
+    double mean=0;
+    for(int i=0;i<size;i++)
+    {
+        arrayrandom[i]=rand()%(b-a)+a;
+        mean=arrayrandom[i]+mean;
+        cout<<" | "<<arrayrandom[i];
+    }
+    cout<<endl;
+    mean=mean/size;
+    double var=0;
+    for(int j=0;j<size;j++)
+    {
+        var=pow(arrayrandom[j]-mean,2)+var;
+    }
+    var=var/(size-1); 
+    cout<<"the mean is "<<mean<<" and the var is "<<var<<endl;
+    
+}
+
+void gestion()
+{
+    int answer1;
+    int answer2;
+    cout<<"which exercise you want do?"<<endl;
+    cout<<"1) Lecture 2"<<endl;
+    cout<<"2) Lecture 3"<<endl;
+    cout<<"4) Lecture 4"<<endl;
+    cout<<"3) Lecture 5"<<endl;
+    cin>>answer1;
+    if(answer1==1)
+    {
+        cout<<"which exercise you want do?"<<endl;
+        cout<<"1) oddeven"<<endl;
+        cout<<"2) sumproductdifferencedivision"<<endl;
+        cout<<"3) exchangevalue"<<endl;
+        cout<<"4) biggestnumber"<<endl;
+        cout<<"5) factorial"<<endl;
+        cout<<"6) fibonacciserie"<<endl;
+        cout<<"7) meanvariance"<<endl;
+        cout<<"8) BinToHex"<<endl;
+        cout<<"9) DecToBin"<<endl;
+        cout<<"10) DecToHex"<<endl;
+        cout<<"11) BinToDec"<<endl;
+        cout<<"12) HexToDec"<<endl;
+        cout<<"13) HexToBin"<<endl;
+        cin>>answer2;
+        if(answer2==0)
+        {
+            int a=0;
+            cout<<"which number you choice?"<<endl;
+            cin>>a;
+            oddeven(a); 
+        }
+        else if(answer2==1)
+        {
+            double a=0;
+            double b=0;
+            cout<<"which first number you choice?"<<endl;
+            cin>>a;
+            cout<<"which second number you choice?"<<endl;
+            cin>>b;
+            sumproductdifferencedivision(a,b);
+        }
+        else if(answer2==3)
+        {
+            double a=0;
+            double b=0;
+            cout<<"which first number you choice?"<<endl;
+            cin>>a;
+            cout<<"which second number you choice?"<<endl;
+            cin>>b;
+            exchangevalue(a,b);
+        }
+        else if(answer2==4)
+        {
+            int a=0;
+            cout<<"which size of the area you want choice?"<<endl;
+            cin>>a;
+            biggestnumber(a);
+        }
+        else if(answer2==6)
+        {
+            int a=0;
+            cout<<"which number you choice?"<<endl;
+            cin>>a;
+            fibonacciserie(a);
+            
+        }
+        else if(answer2==5)
+        {
+            int a=0;
+            cout<<"which number you choice?"<<endl;
+            cin>>a;
+            factorial(a);
+        }
+        else if(answer2==7)
+        {
+            int a=0;
+            cout<<"which size of the area you want choice?"<<endl;
+            cin>>a; 
+            meanvariance(a);
+        }
+        else if(answer2==8)
+        {
+            int a=0;
+            cout<<"which number you choice?"<<endl;
+            cin>>a;
+            BinToHex(a);
+        }
+        else if(answer2==9)
+        {
+            int a=0;
+            cout<<"which number you choice?"<<endl;
+            cin>>a;
+            DecToBin(a);
+        }
+        else if(answer2==10)
+        {
+            int a=0;
+            cout<<"which number you choice?"<<endl;
+            cin>>a;
+            DecToHex(a);
+        }
+        else if(answer2==11)
+        {
+            int a=0;
+            cout<<"which number you choice?"<<endl;
+            cin>>a;
+            BinToDec(a);
+        }
+        else if(answer2==12)
+        {           
+            string a;
+            cout<<"which Hex you choice?"<<endl;
+            cin>>a;
+            HexToDec(a);
+        }
+        else if(answer2==13)
+        {        
+            string a=0;
+            cout<<"which Hex you choice?"<<endl;
+            cin>>a;
+            HexToBin(a);
+        }
+        else
+        {
+            gestion();
+        }
+        
+ 
+    }
+    else if(answer1==2)
+    {
+        cout<<"which exercise you want do?"<<endl;
+        cout<<"1) primeornot "<<endl;
+        cout<<"2) solvingquadraticequation"<<endl;
+        cout<<"3) areaofanytriangle"<<endl;
+        cout<<"4) greatestcommondivisor"<<endl;
+        cout<<"5) leastcommonmultiple"<<endl;
+        cout<<"6) coversion"<<endl;
+        cin>>answer2;
+        if(answer2==1)
+        {
+            int a=0;
+            cout<<"which number you choice?"<<endl;
+            cin>>a;
+            primeornot(a);
+            
+        }
+        else if(answer2==2)
+        {
+            double a=0;
+            cout<<"which 1er number you choice?"<<endl;
+            cin>>a;
+            double b=0;
+            cout<<"which 2nd number you choice?"<<endl;
+            cin>>b;
+            double c=0;
+            cout<<"which 3eme number you choice?"<<endl;
+            cin>>c;
+            solvingquadraticequation(a,b,c);
+        }
+        else if(answer2==3)
+        {            
+            double a=0;
+            cout<<"which 1er number you choice?"<<endl;
+            cin>>a;
+            double b=0;
+            cout<<"which 2nd number you choice?"<<endl;
+            cin>>b;
+            double c=0;
+            cout<<"which 3eme number you choice?"<<endl;
+            cin>>c;
+            areaofanytriangle(a,b,c);
+        }
+        else if(answer2==4)
+        {
+            double a=0;
+            double b=0;
+            cout<<"which first number you choice?"<<endl;
+            cin>>a;
+            cout<<"which second number you choice?"<<endl;
+            cin>>b;
+            greatestcommondivisor(a,b);
+        }
+        else if(answer2==5)
+        {           
+            double a=0;
+            double b=0;
+            cout<<"which first number you choice?"<<endl;
+            cin>>a;
+            cout<<"which second number you choice?"<<endl;
+            cin>>b;
+            leastcommonmultiple(a,b);
+        }
+        else
+        {
+            gestion();
+        }
+        
+        
+        
+    }
+    else if(answer1==3)
+    {
+       cout<<"which exercise you want do?"<<endl;
+        cout<<"1) guessnumber"<<endl;
+        cout<<"2) randomuniformaly"<<endl;
+        cin>>answer2;
+        if(answer2==1)
+        {
+            int a=0;
+            int b=0;
+            cout<<"which first born you choice?"<<endl;
+            cin>>a;
+            cout<<"which second born you choice?"<<endl;
+            cin>>b;
+            guessnumber(a,b);
+            
+        }
+        else if(answer2==2)
+        {
+            int a=0;
+            int b=0;
+            int c=0;
+            cout<<"which first born you choice?"<<endl;
+            cin>>a;
+            cout<<"which second born you choice?"<<endl;
+            cin>>b;
+            cout<<"which size you choice?"<<endl;
+            cin>>c;            
+            randomuniformaly(c,a,b);
+        }
+        else
+        {
+            gestion();
+        }
+        
+    }
+    else if(answer1==4)
+    {
+        
+    }
+    else
+    {
+        gestion();
+    }
+}
+    
+
+
+   
+
+
+
+
+
+int main(int argc, char *argv[])
+{
+    /*oddeven(10);
+    cout<<endl;
+    sumproductdifferencedivision(12,8);
+    biggestnumber(3);
+    factorial(10);
+    fibonacciserie(100);
+    DecToBin(89551);
+    cout<<endl;
+    DecToHex(89551);
+    BinToDec(101011101);
+    HexToDec("AE93");
+    HexToBin("AE93");
+    primeornot(17); 
+    solvingquadraticequation(3,14,1);
+    areaofanytriangle(7,8,14);
+    BinToHex(1010111011);
+    greatestcommondivisor(11,28);
+    guessnumber(0,100);
+    randomuniformaly(10,0,100);
+    leastcommonmultiple(14,28);**/
+    
+    gestion();
+    double t[10]={5,9,3,4,0,10,7,4,2,1};
+    bubblesorting(t,10);
+    insertionsorting(t,10);
+    
+
+    
+    
+}
+
